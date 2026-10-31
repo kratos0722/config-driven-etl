@@ -1,0 +1,23 @@
+# Virtual env
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+build/
+dist/
+
+# Pipeline output / local warehouse
+warehouse/
+*.duckdb
+*.duckdb.wal
+*.parquet
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/

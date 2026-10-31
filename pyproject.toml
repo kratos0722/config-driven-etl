@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "config-driven-etl"
+version = "0.1.0"
+description = "Configuration-driven, multi-tenant ETL framework in Python (Polars + DuckDB)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "polars>=1.8",
+    "duckdb>=1.1",
+    "pydantic>=2.9",
+    "pyyaml>=6.0",
+    "pyarrow>=17.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3"]
+
+[project.scripts]
+etl = "etl.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
