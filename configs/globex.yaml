@@ -1,0 +1,32 @@
+# Tenant: Globex — JSON orders aggregated to regional sales, written to Parquet.
+tenant: globex
+
+source:
+  type: json
+  path: sample_data/globex_orders.json
+
+transforms:
+  - op: cast
+    columns:
+      amount: float
+  - op: filter
+    column: status
+    predicate: "=="
+    value: paid
+  - op: aggregate
+    group_by: [region]
+    aggregations:
+      - column: amount
+        func: sum
+        alias: total_amount
+      - column: order_id
+        func: count
+        alias: orders
+
+expected_schema:
+  region: str
+  total_amount: float
+
+destination:
+  type: parquet
+  path: warehouse/globex_sales.parquet

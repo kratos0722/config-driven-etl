@@ -1,0 +1,34 @@
+# Tenant: Acme — CSV customers loaded into a DuckDB dimension table.
+tenant: acme
+
+source:
+  type: csv
+  path: sample_data/acme_customers.csv
+
+transforms:
+  - op: rename
+    columns:
+      cust_id: customer_id
+      full_name: name
+      signup: signup_date
+  - op: cast
+    columns:
+      customer_id: int
+      revenue: float
+  - op: filter
+    column: revenue
+    predicate: ">"
+    value: 1000
+
+expected_schema:
+  customer_id: int
+  name: str
+  country: str
+  signup_date: str
+  revenue: float
+
+destination:
+  type: duckdb
+  path: warehouse/acme.duckdb
+  table: dim_customer
+  mode: overwrite

@@ -1,0 +1,7 @@
+[
+  { "order_id": "A1", "region": "EMEA", "amount": "120.50", "status": "paid" },
+  { "order_id": "A2", "region": "EMEA", "amount": "80.00", "status": "paid" },
+  { "order_id": "A3", "region": "APAC", "amount": "200.00", "status": "refunded" },
+  { "order_id": "A4", "region": "APAC", "amount": "50.25", "status": "paid" },
+  { "order_id": "A5", "region": "AMER", "amount": "300.00", "status": "paid" }
+]
